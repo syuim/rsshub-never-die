@@ -6,9 +6,6 @@ import { Bindings } from '../types'
 import { constantTimeEqual, createAuthCode, fetchWithStatusCheck, NodeConfig, parseNodeUrls, weightedRandomPick } from '@/utils/helper'
 import logger from '@/middlewares/logger'
 
-// 官方实例，默认加入节点池
-const DEFAULT_NODE: NodeConfig = { url: 'https://rsshub.app', weight: 1 }
-
 const app = new Hono<{ Bindings: Bindings }>()
 
 app.get('*', async (c) => {
@@ -30,10 +27,7 @@ app.get('*', async (c) => {
         }
     }
 
-    const parsedNodes = parseNodeUrls(RSSHUB_NODE_URLS)
-    // 若用户未显式配置默认节点，则自动添加到节点池
-    const hasDefaultNode = parsedNodes.some((n) => n.url === DEFAULT_NODE.url)
-    const allNodes = hasDefaultNode ? parsedNodes : [DEFAULT_NODE, ...parsedNodes]
+    const allNodes = parseNodeUrls(RSSHUB_NODE_URLS)
 
     // 将 NodeConfig 转换为带路径和查询参数的完整 URL
     const makeUrl = (node: NodeConfig) => {

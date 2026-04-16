@@ -64,8 +64,7 @@ TIMEOUT = 60000
 MAX_BODY_SIZE = 104857600
 # 缓存时间(秒)
 CACHE_MAX_AGE = 300
-# RSSHub 实例 的 URL 地址，使用英文逗号分隔。
-# 官方实例 https://rsshub.app 不用列出，默认添加。
+# RSSHub 实例的 URL 地址，使用英文逗号分隔。
 # 每个实例可以通过竖线(|)分隔的参数进行配置：
 #   |weight=N  - 设置权重（默认为 1，数字越大被选中的概率越高）
 #   旧版 |priority / |backup 标记会被忽略，仅用于兼容历史配置
@@ -194,8 +193,7 @@ LOGFILES=false
 # 最大请求体大小(字节)，默认 100MB
 # MAX_BODY_SIZE=104857600
 
-# RSSHub 实例 的 URL 地址，使用英文逗号分隔。
-# 官方实例 https://rsshub.app 不用列出，默认添加。
+# RSSHub 实例的 URL 地址，使用英文逗号分隔。
 # 每个实例可以通过竖线(|)分隔的参数进行配置：
 #   |weight=N  - 设置权重（默认为 1，数字越大被选中的概率越高）
 #   旧版 |priority / |backup 标记会被忽略，仅用于兼容历史配置
