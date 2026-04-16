@@ -1,9 +1,17 @@
+import { copyFileSync, existsSync } from 'fs'
 import { defineConfig, Options } from 'tsup'
 
 const tsupOptions: Options = {
     platform: 'node', // 目标平台
     entry: ['src/index.ts', 'src/vercel.ts'],
     format: ['esm'],
+    onSuccess: async () => {
+        // 将 .env 复制到构建产物目录，供 Vercel 等 serverless 环境运行时读取
+        if (existsSync('.env')) {
+            copyFileSync('.env', 'dist/.env')
+            console.log('Copied .env to dist/')
+        }
+    },
     outExtension({ format }) {
         switch (format) {
             case 'cjs':

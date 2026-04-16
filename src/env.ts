@@ -1,8 +1,16 @@
+import { dirname, resolve } from 'path'
+import { fileURLToPath } from 'url'
 import dotenv from 'dotenv'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
 const result = dotenv.config({
     path: [
         '.env.local',
         '.env',
+        resolve(__dirname, '.env.local'),
+        resolve(__dirname, '.env'),
     ],
 })
 const envObj = result.parsed
